@@ -1,0 +1,14 @@
+{
+  "collectionName": "My NFT Collection",
+  "collectionDescription": "A unique collection of AI-generated character NFTs.",
+  "externalUrl": "https://example.com",
+  "imagesCid": "PLACEHOLDER_CID",
+  "sellerFeeBasisPoints": 500,
+  "feeRecipient": "0x0000000000000000000000000000000000000000",
+  "comfyUrl": "http://127.0.0.1:8188",
+  "imageWidth": 768,
+  "imageHeight": 768,
+  "steps": 20,
+  "guidance": 2.5,
+  "outputDir": "nft/output"
+}

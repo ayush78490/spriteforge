@@ -1,0 +1,112 @@
+{
+  "Background": [
+    {
+      "value": "Cosmic Void",
+      "weight": 25,
+      "prompt": "Change the background to a deep cosmic void with distant stars and purple nebulae"
+    },
+    {
+      "value": "Lava Pit",
+      "weight": 15,
+      "prompt": "Change the background to a bubbling lava pit with orange glow and volcanic rocks"
+    },
+    {
+      "value": "Future Cityscape",
+      "weight": 10,
+      "prompt": "Overlay a futuristic cityscape with neon lights and towering skyscrapers"
+    },
+    {
+      "value": "Snowy Mountains",
+      "weight": 10,
+      "prompt": "Set the background against a snowy mountain range with icy peaks and fog"
+    }
+  ],
+  "Outfit": [
+    {
+      "value": "Golden Armor",
+      "weight": 10,
+      "prompt": "Dress the character in shining golden plate armor with ornate engravings"
+    },
+    {
+      "value": "None",
+      "weight": 30,
+      "prompt": ""
+    },
+    {
+      "value": "Cybernetic Enhancements",
+      "weight": 20,
+      "prompt": "Add futuristic cybernetic implants and upgrades to the character's armor"
+    },
+    {
+      "value": "Black Combat Suit",
+      "weight": 20,
+      "prompt": "Replace the armor with a sleek black combat suit with tactical markings and utility belts"
+    }
+  ],
+  "Headwear": [
+    {
+      "value": "None",
+      "weight": 30,
+      "prompt": ""
+    },
+    {
+      "value": "Combat Helmet",
+      "weight": 20,
+      "prompt": "Add a futuristic combat helmet with visor and earpieces"
+    },
+    {
+      "value": "Neck Guard",
+      "weight": 15,
+      "prompt": "Attach a high-tech neck guard for additional protection"
+    },
+    {
+      "value": "Face Mask",
+      "weight": 15,
+      "prompt": "Cover the character's face with a sleek, futuristic face mask"
+    }
+  ],
+  "Hair": [
+    {
+      "value": "Wild Spiky",
+      "weight": 20,
+      "prompt": "Keep the hair in its wild, spiky form"
+    },
+    {
+      "value": "Frost Lavender",
+      "weight": 20,
+      "prompt": "Maintain the hair as frost lavender"
+    },
+    {
+      "value": "Electric Blue",
+      "weight": 15,
+      "prompt": "Change the hair color to bright electric blue"
+    },
+    {
+      "value": "None",
+      "weight": 25,
+      "prompt": ""
+    }
+  ],
+  "Face": [
+    {
+      "value": "Cyan Energy Eyes",
+      "weight": 25,
+      "prompt": "Keep the character's eyes glowing cyan with energy"
+    },
+    {
+      "value": "Red Energy Eyes",
+      "weight": 15,
+      "prompt": "Change the eyes to a fiery red with energy"
+    },
+    {
+      "value": "Green Energy Eyes",
+      "weight": 15,
+      "prompt": "Alter the eyes to a vibrant green with energy"
+    },
+    {
+      "value": "None",
+      "weight": 25,
+      "prompt": ""
+    }
+  ]
+}

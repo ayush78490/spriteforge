@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpriteForge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gLogo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c4a8ff"/><stop offset=".5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#4f46e5"/></linearGradient>
+  </defs>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 8.5a4.5 4.5 0 0 1-.5 9.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 12v8m-3-5 3-3 3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 11v5m0-8.5v.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="9" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="13" y="4" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="4" y="13" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="13" y="13" width="7" height="7" rx="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><circle cx="18" cy="12" r="1.7" fill="currentColor"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3c.6 4.4 2.6 6.4 7 7-4.4.6-6.4 2.6-7 7-.6-4.4-2.6-6.4-7-7 4.4-.6 6.4-2.6 7-7zM19 15c.3 1.8 1 2.6 2.8 2.9-1.8.3-2.5 1-2.8 2.8-.3-1.8-1-2.5-2.8-2.8 1.8-.3 2.5-1.1 2.8-2.9z" fill="currentColor"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10m4 0h2M4 17h4m4 0h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="10" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 7.5 12 12l8-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-angles" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-unity" viewBox="0 0 24 24"><path d="m12 2.5 8.5 4.9v9.2L12 21.5l-8.5-4.9V7.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m12 7 4.2 2.5v5L12 17l-4.2-2.5v-5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-mountain" viewBox="0 0 24 24"><path d="m2.5 19 6.5-11 4 6.5 2.5-3.5 6 8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m7.2 11 1.8 1.3 1.6-1.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-brush" viewBox="0 0 24 24"><path d="M14.5 4.5 19.5 9.5 11 18l-5-5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6 13c-2 0-3 1.5-3 3.2 0 1.3-.5 2.3-1 2.8 3 .5 7-.5 7-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cursor" viewBox="0 0 24 24"><path d="m5 3.5 13 7-5.6 1.6 3.3 6.2-2.4 1.3-3.3-6.3L5.5 17.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-eraser" viewBox="0 0 24 24"><path d="m4 15.5 9-9 6.5 6.5-7 7H8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 11 15 17.5M13 20h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 6 4.5 10.5 9 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10.5h9a5 5 0 0 1 0 10h-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-redo" viewBox="0 0 24 24"><path d="m15 6 4.5 4.5L15 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 10.5h-9a5 5 0 0 0 0 10h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 3v3m6-3v3M9 18v3m6-3v3M3 9h3m-3 6h3m12-6h3m-3 6h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="brand"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 28 9v14l-12 7L4 23V9z" fill="url(#gLogo)"/><path d="M16 9.5 22 13v6l-6 3.5-6-3.5v-6z" fill="#0b0b1d" opacity=".55"/><path d="M16 2v7.5M28 9l-6 4M4 9l6 4" stroke="#fff" stroke-opacity=".35" stroke-width="1"/></svg><span>SpriteForge</span></div>
+  <nav class="nav" id="nav">
+    <button data-view="animate" class="on">Animate</button>
+    <button data-view="studio">Image Studio</button>
+    <button data-view="scene">Scene Kit</button>
+    <button data-view="nft">NFT Forge</button>
+  </nav>
+  <div class="top-right">
+    <button id="ramToggle" class="ram-pill" title="Apps using RAM" aria-controls="appsDrawer" aria-expanded="false">
+      <span class="ram-ico"></span>
+      <span class="ram-txt"><b>RAM –</b><span class="ram-bar"><i></i></span></span>
+    </button>
+    <span id="comfyStatus" class="status"><i></i><span>Connecting…</span></span>
+    <div class="pop-wrap">
+      <button id="bellBtn" class="icon-btn" title="Notifications" aria-label="Notifications"><svg><use href="#i-bell"/></svg><span class="dot" hidden></span></button>
+      <div id="notePop" class="popover notes" hidden><div class="pop-head"><b>Notifications</b><button class="link" id="clearNotes">Clear</button></div><div id="noteList"></div></div>
+    </div>
+    <button id="openSettings" class="icon-btn" title="Settings" aria-label="Settings"><svg><use href="#i-gear"/></svg></button>
+    <span class="avatar" title="You (local)"><svg><use href="#i-user"/></svg></span>
+  </div>
+</header>
+
+<div class="app">
+  <!-- ================= left ================= -->
+  <aside class="side">
+    <div id="charSide" class="side-part">
+    <label class="upload-card" id="uploadTile">
+      <input type="file" id="uploadInput" accept="image/*" hidden>
+      <span class="up-ico"><svg><use href="#i-cloud"/></svg></span>
+      <span><b>Upload Character</b><small>PNG / JPG · or drop it anywhere</small></span>
+    </label>
+
+    <div class="side-head"><span>Characters</span><button class="icon-btn sm" id="addChar" title="Upload a character" aria-label="Upload a character"><svg><use href="#i-plus"/></svg></button></div>
+    <div id="charList" class="char-list"></div>
+    </div>
+    <div id="sceneSide" class="side-part" hidden>
+      <label class="upload-card" id="sceneUploadTile">
+        <input type="file" id="sceneUploadInput" accept="image/*" hidden>
+        <span class="up-ico"><svg><use href="#i-mountain"/></svg></span>
+        <span><b>Upload Landscape</b><small>A scene or game background · or drop it anywhere</small></span>
+      </label>
+      <div class="side-head"><span>Scenes</span><button class="icon-btn sm" id="addScene" title="Upload a landscape" aria-label="Upload a landscape"><svg><use href="#i-plus"/></svg></button></div>
+      <div id="sceneList" class="char-list"></div>
+    </div>
+
+    <section class="card sys">
+      <div class="card-head"><h3>System</h3><span class="info" title="Live stats from your GPU, CPU and RAM. The PC RAM limit is enforced by ComfyUI's RAM guard."><svg><use href="#i-info"/></svg></span></div>
+      <div id="gpuName" class="gpu-name"></div>
+      <div id="meters" class="meters"></div>
+      <p id="sysWarn" class="sys-warn" hidden></p>
+    </section>
+  </aside>
+
+  <!-- ================= main ================= -->
+  <main>
+    <section id="viewAnimate">
+      <div class="hero" id="hero">
+        <div class="hero-copy">
+          <span class="eyebrow"><svg><use href="#i-spark"/></svg>AI powered 2D animations</span>
+          <h1><span class="grad-text">Bring Your Characters</span><br>to Life</h1>
+          <p>Generate clean, game-ready 2D sprite animations with AI, right on your own GPU.<br>Upload a character, pick animations, press Generate.</p>
+          <div class="feat">
+            <span><svg><use href="#i-cube"/></svg>Game Ready Sprites</span>
+            <span><svg><use href="#i-angles"/></svg>Multiple View Angles</span>
+            <span><svg><use href="#i-unity"/></svg>Export for Unity</span>
+            <span><svg><use href="#i-star"/></svg>High Quality Output</span>
+          </div>
+        </div>
+        <svg class="hero-art" viewBox="0 0 520 260" aria-hidden="true">
+          <defs>
+            <linearGradient id="hfTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c9b6ff" stop-opacity=".75"/><stop offset="1" stop-color="#7c5cff" stop-opacity=".35"/></linearGradient>
+            <linearGradient id="hfL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8b5cf6" stop-opacity=".55"/><stop offset="1" stop-color="#3b1d8f" stop-opacity=".25"/></linearGradient>
+            <linearGradient id="hfR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6d4df2" stop-opacity=".45"/><stop offset="1" stop-color="#1e1150" stop-opacity=".2"/></linearGradient>
+            <radialGradient id="hGlow"><stop offset="0" stop-color="#8b5cf6" stop-opacity=".55"/><stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/></radialGradient>
+            <filter id="hBlur"><feGaussianBlur stdDeviation="1.2"/></filter>
+            <g id="cube"><path d="M0-40 35-20 0 0-35-20z" fill="url(#hfTop)"/><path d="M-35-20 0 0v42l-35-20z" fill="url(#hfL)"/><path d="M35-20 0 0v42l35-20z" fill="url(#hfR)"/>
+              <path d="M0-40 35-20v42L0 42l-35-20v-42zM-35-20 0 0l35-20M0 0v42" fill="none" stroke="#d9ccff" stroke-opacity=".75" stroke-width="1.2" stroke-linejoin="round"/></g>
+          </defs>
+          <ellipse cx="330" cy="205" rx="190" ry="60" fill="url(#hGlow)"/>
+          <g transform="translate(330 205)" fill="none" stroke="#a78bfa" stroke-linejoin="round">
+            <path d="M0-52 130 0 0 52-130 0z" stroke-opacity=".7" stroke-width="1.5"/>
+            <path d="M0-40 100 0 0 40-100 0z" stroke-opacity=".5"/>
+            <path d="M0-28 70 0 0 28-70 0z" stroke-opacity=".35"/>
+            <path d="M-130 0v10L0 62l130-52V0" stroke-opacity=".45"/>
+          </g>
+          <use href="#cube" transform="translate(330 150) scale(1.35)"/>
+          <use href="#cube" transform="translate(440 70) scale(.95) rotate(12)" opacity=".9"/>
+          <use href="#cube" transform="translate(215 58) scale(.6) rotate(-14)" opacity=".85"/>
+          <use href="#cube" transform="translate(480 175) scale(.42) rotate(20)" opacity=".7"/>
+          <g fill="#e9e1ff" filter="url(#hBlur)"><circle cx="160" cy="130" r="2"/><circle cx="270" cy="30" r="1.6"/><circle cx="395" cy="140" r="1.8"/><circle cx="500" cy="120" r="1.4"/><circle cx="185" cy="200" r="1.3"/><circle cx="420" cy="230" r="1.5"/></g>
+        </svg>
+        <button class="hero-x" id="heroHide" title="Hide banner" aria-label="Hide banner"><svg><use href="#i-close"/></svg></button>
+      </div>
+
+      <label id="empty" class="empty-drop">
+        <input type="file" accept="image/*" hidden class="upload-proxy">
+        <span class="up-ico lg"><svg><use href="#i-cloud"/></svg></span>
+        <h2>Upload a character to begin</h2>
+        <p>Drop a full-body character image here, or click to choose one. Transparent PNG works best; side-view art animates best.</p>
+        <span class="btn primary lg">Choose an image</span>
+      </label>
+
+      <div id="animPane" hidden>
+        <div class="anim-head">
+          <h2>Animations</h2><span class="count" id="animCount">0</span>
+          <span class="hint" id="animHint">Hover a card to preview. Select animations to generate or download.</span>
+          <div class="tools">
+            <label class="search"><svg><use href="#i-search"/></svg><input id="actSearch" type="search" placeholder="Search animations…"></label>
+            <select id="setSel" aria-label="Animation set"><option value="fighter">Fighter set</option><option value="general">General set</option></select>
+            <select id="catSel" aria-label="Category"></select>
+            <div class="seg-ico" id="layoutSeg"><button data-layout="grid" class="on" title="Grid" aria-label="Grid"><svg><use href="#i-grid"/></svg></button><button data-layout="list" title="List" aria-label="List"><svg><use href="#i-list"/></svg></button></div>
+          </div>
+        </div>
+        <div class="sel-bar">
+          <span>Select</span><button class="link" id="selAll">All shown</button><button class="link" id="selMissing">Not made yet</button><button class="link" id="selNone">None</button>
+          <span class="sel-count" id="selCount"></span>
+        </div>
+        <div id="actionGrid" class="anim-grid"></div>
+      </div>
+    </section>
+
+    <section id="viewStudio" hidden>
+      <div class="studio">
+        <div class="card studio-form">
+          <div class="studio-title"><h2>Image Studio</h2><span class="chip-tag" id="studioTag">FLUX Kontext</span></div>
+          <div class="segmented two" id="modeSeg"><button data-mode="image" class="on">Image</button><button data-mode="clip">Video clip + sound</button></div>
+          <p class="hint" id="studioHint">Edit a character (turn it to a side view, change the pose…) or create a new one from text.</p>
+          <div class="field-label">Start from</div>
+          <div class="segmented" id="srcSeg">
+            <button data-src="character" class="on">Character</button><button data-src="upload">Upload</button><button data-src="multi" class="clip-only" hidden title="Several images: keyframes the clip passes through, or references combined into one scene">Several</button><button data-src="image">Result</button><button data-src="none">Text only</button>
+          </div>
+          <div id="srcPanel" class="src-panel"></div>
+          <div class="image-only field-label">Quick edits</div>
+          <div id="presetChips" class="chips image-only"></div>
+          <div class="field-label" id="promptLabel">Prompt</div>
+          <textarea id="imgPrompt" rows="5" placeholder="Describe the change, e.g. turn this character to a side view facing right"></textarea>
+          <div class="clip-only" hidden>
+            <div class="grid2">
+              <label>Length<select id="clipSeconds"><option value="2">2 s</option><option value="3" selected>3 s</option><option value="4">4 s</option><option value="5">5 s</option><option value="8">8 s (2 parts)</option><option value="10">10 s (2 parts)</option><option value="15">15 s (3 parts)</option><option value="20">20 s (4 parts)</option><option value="30">30 s (6 parts)</option></select></label>
+              <label>Shape (480p)<select id="clipShape"><option value="landscape">Landscape 832×480</option><option value="portrait">Portrait 480×832</option><option value="square">Square 640×640</option></select></label>
+            </div>
+            <label>Sound <em>(MMAudio makes it from the video; empty = no sound)</em><input id="clipSound" placeholder="e.g. waves on rocks, seagulls, wind"></label>
+            <label>Spoken line <em>(optional, Qwen3-TTS)</em><textarea id="clipSpeech" rows="2" placeholder="What someone says in the clip"></textarea></label>
+            <div class="grid2">
+              <label>Voice<select id="clipSpeaker"><option>Ryan</option><option>Aiden</option><option>Dylan</option><option>Eric</option><option>Serena</option><option>Vivian</option><option>Sohee</option><option>Ono_anna</option><option>Uncle_fu</option></select></label>
+              <label>Starts at (s)<input id="clipSpeechStart" type="number" min="0" max="4" step="0.1" value="0.3"></label>
+            </div>
+            <label class="inline-check"><input type="checkbox" id="clipFit" checked> Make the clip long enough for the line (up to 30 s)</label>
+          </div>
+          <details class="opts">
+            <summary>Options</summary>
+            <div class="grid2">
+              <label class="image-only">Steps<input id="imgSteps" type="number" min="4" max="40" value="20"></label>
+              <label class="image-only">Guidance<input id="imgGuidance" type="number" min="1" max="10" step="0.5" value="2.5"></label>
+              <label class="clip-only" hidden title="Smaller tiles use less VRAM when decoding the video">VAE tile<input id="clipTile" type="number" min="64" max="512" step="32" value="128"></label>
+              <label>Seed<input id="imgSeed" type="number" placeholder="random"></label>
+              <label class="t2i-only">Size<select id="imgSize"><option value="832x1216">Portrait 832×1216</option><option value="1024x1024">Square 1024×1024</option><option value="1216x832">Landscape 1216×832</option></select></label>
+            </div>
+          </details>
+          <button id="imgGenerate" class="btn primary lg block"><svg><use href="#i-spark"/></svg><span>Generate image</span></button>
+          <p class="hint center" id="genTime">About 3–5 minutes per image on your GPU.</p>
+        </div>
+        <div class="studio-results">
+          <div class="anim-head"><h2>Results</h2></div>
+          <div id="imgGrid" class="img-grid"></div>
+        </div>
+      </div>
+    </section>
+    <section id="viewScene" hidden>
+      <label id="sceneEmpty" class="empty-drop">
+        <input type="file" accept="image/*" hidden class="scene-upload">
+        <span class="up-ico lg"><svg><use href="#i-mountain"/></svg></span>
+        <h2>Break a landscape into sprites</h2>
+        <p>Upload a landscape or game background. SpriteForge finds the trees, rocks, mountains, clouds and waterfalls and cuts each one out as its own sprite.
+          FLUX Kontext can complete the hidden parts and draw new variations; then paint new scenes with them or take the kit to Unity.</p>
+        <span class="btn primary lg">Choose a picture</span>
+      </label>
+
+      <div id="scenePane" hidden>
+        <div class="anim-head">
+          <h2 id="scName"></h2><span class="count" id="scCount">0</span>
+          <span class="hint" id="scHint"></span>
+          <div class="tools">
+            <div class="seg-btns tabs" id="scTabs"><button data-tab="parts" class="on">Sprites</button><button data-tab="paint">Paint a scene</button></div>
+            <button class="btn ghost sm more" id="scMore" title="More" aria-label="More"><svg><use href="#i-dots"/></svg></button>
+          </div>
+        </div>
+
+        <div id="scPartsTab">
+          <div class="card sc-stage-card">
+            <div class="sc-bar">
+              <div class="seg-ico" id="scShow"><button data-show="parts" class="on" title="Colour every sprite">Sprites</button><button data-show="picture" title="The picture only">Picture</button></div>
+              <button class="btn ghost sm" id="scAddMode"><svg><use href="#i-plus"/></svg>Add an object by hand</button>
+              <span class="hint" id="scStageHint">Hover to see a sprite, click it to jump to it.</span>
+            </div>
+            <div class="sc-stage checker" id="scStage">
+              <canvas id="scCanvas"></canvas>
+              <div class="sc-busy" id="scBusy" hidden><div class="ring" id="scRing">…</div><span id="scBusyText"></span><button class="btn soft sm" id="scBusyRam" hidden>Free up RAM →</button></div>
+            </div>
+          </div>
+          <div id="scGroups"></div>
+        </div>
+
+        <div id="scPaintTab" hidden>
+          <div class="card paint-bar">
+            <div class="seg-ico" id="pTools">
+              <button data-tool="brush" class="on" title="Brush (B): click or drag to place the chosen sprite"><svg><use href="#i-brush"/></svg></button>
+              <button data-tool="select" title="Move (V): drag a sprite; mouse wheel = size, F = flip, Delete = remove, Ctrl+D = copy, [ ] = order"><svg><use href="#i-cursor"/></svg></button>
+              <button data-tool="erase" title="Eraser (E): click or drag over sprites to remove them"><svg><use href="#i-eraser"/></svg></button>
+            </div>
+            <label class="inline">Size <input id="pSize" type="range" min="0.2" max="3" step="0.05" value="1"><output id="pSizeOut">100%</output></label>
+            <label class="inline">Vary <input id="pJitter" type="range" min="0" max="0.6" step="0.05" value="0.2"><output id="pJitterOut">±20%</output></label>
+            <label class="inline check"><input type="checkbox" id="pFlip" checked> Random flip</label>
+            <label class="inline check" title="Sprites standing lower in the picture are drawn in front; mountains stay behind trees"><input type="checkbox" id="pAuto" checked> Auto depth</label>
+            <select id="pBg" aria-label="Background"><option value="sky">Sky background</option><option value="plate">Clean background (AI)</option><option value="picture">Original picture</option><option value="none">Transparent</option></select>
+            <div class="paint-actions">
+              <button class="icon-btn sm" id="pUndo" title="Undo (Ctrl+Z)" aria-label="Undo"><svg><use href="#i-undo"/></svg></button>
+              <button class="icon-btn sm" id="pRedo" title="Redo (Ctrl+Y)" aria-label="Redo"><svg><use href="#i-redo"/></svg></button>
+              <button class="btn ghost sm" id="pRebuild" title="Put every sprite back where it was in the picture">From picture</button>
+              <button class="btn ghost sm danger" id="pClear">Clear</button>
+              <button class="btn soft sm" id="pPng"><svg><use href="#i-download"/></svg>PNG</button>
+              <span class="hint" id="pSaved"></span>
+            </div>
+          </div>
+          <div class="paint-wrap">
+            <div class="paint-stage checker" id="pStage"><canvas id="pCanvas"></canvas></div>
+            <div class="card palette" id="pPalette"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="viewNft" hidden>
+      <div class="nft-page">
+        <div class="nft-main">
+          <div class="anim-head">
+            <h2>NFT Forge</h2><span class="chip-tag">FLUX Kontext</span>
+            <span class="hint" id="nftHint">Generate a collection of unique NFT images from one base character.</span>
+          </div>
+
+          <!-- Step 1: Base image -->
+          <div class="card nft-step">
+            <h3>1. Base Character</h3>
+            <div class="nft-base-row">
+              <div class="nft-base-thumb checker" id="nftBaseThumb"><span class="up-ico"><svg><use href="#i-cloud"/></svg></span></div>
+              <div>
+                <p class="hint">Upload the character image all NFTs will be based on.</p>
+                <label class="btn ghost sm"><input type="file" id="nftBaseInput" accept="image/*" hidden>Choose image</label>
+                <span class="hint" id="nftBaseName"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Describe & Generate Traits -->
+          <div class="card nft-step">
+            <h3>2. Define Traits</h3>
+            <p class="hint">Describe your base character so the system can generate fitting trait categories. Or edit <code>nft/traits.json</code> manually.</p>
+            <label>Character description<textarea id="nftCharDesc" rows="3" placeholder="e.g. A pixel art knight character with blue armor, holding a sword, standing on grass"></textarea></label>
+            <div class="btn-row">
+              <button id="nftAutoTraits" class="btn soft">Auto-generate traits (Ollama)</button>
+              <button id="nftLoadTraits" class="btn ghost sm">Load current traits</button>
+            </div>
+            <p class="hint" id="nftTraitStatus"></p>
+            <div id="nftTraitPreview" class="nft-trait-preview"></div>
+          </div>
+
+          <!-- Step 3: Combos -->
+          <div class="card nft-step">
+            <h3>3. Combinations</h3>
+            <div class="grid2">
+              <label>Count<input id="nftCount" type="number" min="1" max="5000" value="100"></label>
+              <label>Seed<input id="nftSeed" type="number" value="42"></label>
+            </div>
+            <button id="nftGenCombos" class="btn soft block">Generate combinations</button>
+            <p class="hint center" id="nftComboHint"></p>
+          </div>
+
+          <!-- Step 3: Generate -->
+          <div class="card nft-step">
+            <h3>4. Generate Images</h3>
+            <div class="nft-gen-bar" id="nftGenBar">
+              <div class="nft-progress-row"><div class="nft-pbar"><i id="nftPbarFill"></i></div><span id="nftPct">0%</span></div>
+              <p class="hint" id="nftGenStatus">Upload base + generate combos first.</p>
+            </div>
+            <div class="btn-row">
+              <button id="nftPreview" class="btn soft" disabled>Preview (10)</button>
+              <button id="nftGenerate" class="btn primary" disabled><svg><use href="#i-spark"/></svg><span>Generate all</span></button>
+              <button id="nftStop" class="btn ghost danger" hidden>Stop</button>
+            </div>
+          </div>
+
+          <!-- Step 4: Results grid -->
+          <div class="card nft-step">
+            <h3>5. Results</h3>
+            <div class="nft-actions-row">
+              <button id="nftMetadata" class="btn ghost sm" disabled>Generate metadata</button>
+              <button id="nftFinalize" class="btn ghost sm" disabled>Finalize IDs</button>
+              <button id="nftRarity" class="btn ghost sm" disabled>Rarity report</button>
+            </div>
+            <div id="nftGrid" class="nft-grid"></div>
+            <p class="hint center" id="nftGridHint">Generated NFTs will appear here.</p>
+          </div>
+        </div>
+
+        <!-- Right panel: config -->
+        <div class="nft-side">
+          <div class="card">
+            <h3>Collection Settings</h3>
+            <label>Name<input id="nftName" value="My NFT Collection"></label>
+            <label>Description<textarea id="nftDesc" rows="2">A unique collection of AI-generated character NFTs.</textarea></label>
+            <label>Website URL<input id="nftUrl" placeholder="https://..."></label>
+            <div class="grid2">
+              <label>Royalty (bps)<input id="nftRoyalty" type="number" value="500"></label>
+              <label>Fee recipient<input id="nftFee" placeholder="0x..." style="font-size:11px"></label>
+            </div>
+            <h3 style="margin-top:14px">Image Settings</h3>
+            <div class="grid2">
+              <label>Width<input id="nftW" type="number" value="768"></label>
+              <label>Height<input id="nftH" type="number" value="768"></label>
+            </div>
+            <div class="grid2">
+              <label>Steps<input id="nftSteps" type="number" value="20" min="4" max="40"></label>
+              <label>Guidance<input id="nftGuidance" type="number" value="2.5" step="0.5" min="1" max="10"></label>
+            </div>
+            <button id="nftSaveConfig" class="btn ghost sm block" style="margin-top:8px">Save settings</button>
+          </div>
+
+          <div class="card">
+            <h3>IPFS &amp; Deploy</h3>
+            <label>Images CID<input id="nftCid" placeholder="QmXxx... (after uploading)"></label>
+            <button id="nftSetCid" class="btn ghost sm block">Update metadata CID</button>
+            <p class="hint" id="nftCidHint"></p>
+          </div>
+
+          <div class="card">
+            <h3>Rarity</h3>
+            <div id="nftRarityPanel" class="nft-rarity"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= right ================= -->
+  <aside class="right">
+    <section class="card now" id="nowCard" hidden>
+      <div class="card-head"><h3>Now generating</h3><span id="queueInfo" class="sub"></span></div>
+      <div id="nowBody"></div>
+    </section>
+
+    <section class="card gen" id="genCard">
+      <div class="card-head"><h2>Generation Settings</h2><button class="icon-btn sm" id="genOpts" title="Prompt options" aria-label="Prompt options"><svg><use href="#i-sliders"/></svg></button></div>
+      <div class="gs-block">
+        <div class="gs-label">Character</div>
+        <div class="gs-char" id="gsChar">
+          <div class="gs-thumb checker"><img id="gsImg" alt=""></div>
+          <div class="gs-meta"><b id="gsName">No character</b><small id="gsSub">Upload one to start</small></div>
+          <div class="pop-wrap">
+            <button class="btn ghost sm" id="changeChar">Change</button>
+            <div class="popover chars" id="charPop" hidden></div>
+          </div>
+        </div>
+      </div>
+      <div class="gs-block">
+        <div class="gs-label">View Angle</div>
+        <div class="views" id="viewTiles"></div>
+      </div>
+      <div class="gs-block">
+        <div class="gs-label">Export Format</div>
+        <div class="seg-btns" id="fmtSeg">
+          <button data-fmt="png" class="on">PNG Sequence</button><button data-fmt="gif">GIF</button><button data-fmt="sheet">Sprite Sheet</button><button data-fmt="unity">Unity</button>
+        </div>
+        <label class="bg-sel"><span class="bg-swatch" id="bgSwatch"></span>
+          <select id="bgSel" aria-label="Export background">
+            <option value="transparent">Transparent Background (Recommended)</option>
+            <option value="dark">Dark Background</option>
+            <option value="white">White Background</option>
+            <option value="green">Green Screen</option>
+          </select>
+        </label>
+      </div>
+      <button id="generate" class="btn primary xl block" disabled><svg><use href="#i-spark"/></svg><span>Generate</span></button>
+      <p class="hint center" id="genHint">Select one or more animations to generate</p>
+      <button id="downloadAll" class="btn ghost block dl" disabled><svg><use href="#i-download"/></svg><span>Download all</span></button>
+      <p class="hint center" id="dlHint"></p>
+    </section>
+
+    <section class="card gen" id="sceneCard" hidden>
+      <div class="card-head"><h2>Scene Kit</h2><span class="info" title="Objects are found and cut out on your CPU (about 20-40 s, under 1 GB of RAM). Completing, variations and the clean background use FLUX Kontext on your GPU (about 4 min each)."><svg><use href="#i-info"/></svg></span></div>
+      <div class="gs-block">
+        <div class="gs-label">Look for</div>
+        <div class="chips" id="scLabels"></div>
+        <form class="add-label" id="scLabelForm"><input id="scLabelIn" placeholder="Add: castle, bridge, palm tree…" maxlength="30"><button class="btn ghost sm">Add</button></form>
+        <button class="btn soft block" id="scFind"><svg><use href="#i-search"/></svg><span>Find these objects</span></button>
+        <p class="hint center" id="scFindHint"></p>
+      </div>
+      <div class="gs-block">
+        <div class="gs-label">Clean background</div>
+        <div class="plate-row">
+          <div class="plate-thumb checker"><img id="scPlateImg" alt=""></div>
+          <div><p class="hint" id="scPlateHint">The picture with its objects removed, to paint new scenes on.</p><button class="btn ghost sm" id="scPlateBtn">Make it (~4 min)</button></div>
+        </div>
+      </div>
+      <div class="gs-block">
+        <div class="gs-label">Export the kit</div>
+        <div class="seg-btns wrap" id="scFmt"><button data-fmt="unity" class="on">Unity</button><button data-fmt="sheet">Sprite Sheet</button><button data-fmt="png">PNG Sprites</button><button data-fmt="psd">PSD Layers</button><button data-fmt="svg">SVG Layers</button></div>
+        <p class="hint" id="scFmtHint"></p>
+        <button class="btn primary xl block" id="scExport" disabled><svg><use href="#i-download"/></svg><span>Download kit</span></button>
+        <p class="hint center" id="scExportHint"></p>
+      </div>
+    </section>
+
+    <section class="card usage">
+      <div class="card-head"><h2>Usage &amp; Resources</h2><span class="info" title="RAM on the whole PC, against your limit. The AI only gets what your other apps leave free."><svg><use href="#i-info"/></svg></span></div>
+      <div class="rp-big"><b id="rpInUse">–</b><span id="rpLimit">GB in use</span></div>
+      <div class="rp-stack" id="rpStack" role="img" aria-label="RAM use breakdown"><i class="seg ai"></i><i class="seg apps"></i><i class="seg win"></i><span class="limit-mark" title="Your RAM limit"></span></div>
+      <ul class="rp-legend" id="rpLegend"></ul>
+      <p class="rp-note" id="rpNote"></p>
+      <button class="btn ghost sm block" id="openApps">Free up RAM · see apps</button>
+    </section>
+  </aside>
+</div>
+
+<!-- Apps using RAM (drawer) -->
+<aside class="drawer" id="appsDrawer" aria-hidden="true">
+  <div class="drawer-head"><div><h2>Apps using RAM</h2><small>Close apps to give the AI more room</small></div><button class="btn ghost sm" id="closeApps">Hide ›</button></div>
+  <div id="appList" class="app-list"><p class="hint">Loading…</p></div>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+
+<div id="dropOverlay" class="drop-overlay" hidden><div>Drop image to add a character</div></div>
+
+<!-- Preview -->
+<dialog id="preview" class="pv">
+  <div class="dlg-head"><div><h3 id="pvTitle"></h3><small id="pvSub"></small></div><button class="icon-btn" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button></div>
+  <div class="pv-body">
+    <div class="pv-stage checker"><canvas id="pvCanvas" width="256" height="320"></canvas></div>
+    <div class="pv-side">
+      <div class="pv-ctrl"><button class="icon-btn" id="pvPlay" aria-label="Pause"><svg><use href="#i-pause"/></svg></button>
+        <label class="inline">Speed <input id="pvFps" type="range" min="2" max="30"><output id="pvFpsOut"></output></label></div>
+      <div class="pv-frames" id="pvFrames"></div>
+      <p class="hint" id="pvNote"></p>
+      <div class="gs-label">Download</div>
+      <div class="btn-row" id="pvDl"></div>
+      <div class="gs-label">Adjust</div>
+      <div class="btn-row" id="pvAct"></div>
+    </div>
+  </div>
+</dialog>
+
+<!-- Generation options -->
+<dialog id="optsDlg">
+  <div class="dlg-head"><h3>Prompt options</h3><button class="icon-btn" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button></div>
+  <div class="dlg-pad">
+    <label>Extra prompt for this batch<input id="extraPrompt" placeholder="e.g. purple energy trails"></label>
+    <label>Seed<input id="seedInput" placeholder="random" type="number"></label>
+    <div class="char-only">
+      <label>Character description <em>(optional)</em><textarea id="charDesc" rows="2" placeholder="Only the look, e.g. a hooded sorcerer in a black and gold robe"></textarea></label>
+      <p class="hint">Helps the video model keep the character consistent. Leave empty to let the image speak for itself.</p>
+      <div class="row">
+        <label>Name<input id="charName" spellcheck="false"></label>
+        <label>This image shows the<select id="charViewSel"><option value="side">Side view</option><option value="front">Front view</option><option value="back">Back view</option></select></label>
+      </div>
+      <div class="btn-row">
+        <button id="flipChar" class="btn ghost sm">⇋ Flip facing</button>
+        <button id="deleteChar" class="btn ghost sm danger">Delete character</button>
+      </div>
+    </div>
+    <div class="dlg-foot"><button class="btn primary" id="saveOpts">Save</button></div>
+  </div>
+</dialog>
+
+<!-- Tuner -->
+<dialog id="tuner">
+  <div class="dlg-head"><h3 id="tTitle">Tune</h3><button class="icon-btn" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button></div>
+  <div class="tuner-body">
+    <div>
+      <div class="canvas-wrap checker"><canvas id="tRaw"></canvas></div>
+      <label>Source frame <input id="tFrame" type="range" min="0" value="0"> <span id="tFrameN"></span></label>
+    </div>
+    <div class="tuner-controls">
+      <h4>Chroma key <small>(live)</small></h4>
+      <label>Tolerance <input id="kTol" type="range" min="0" max="160"><output></output></label>
+      <label>Softness <input id="kSoft" type="range" min="1" max="160"><output></output></label>
+      <label>Despill <input id="kSpill" type="range" min="0" max="1" step="0.05"><output></output></label>
+      <label>Edge cleanup <input id="kClean" type="range" min="0" max="80"><output></output></label>
+      <h4>Frames</h4>
+      <div class="row"><label>Count <input id="tCount" type="number" min="1" max="64"></label><label>FPS <input id="tFps" type="number" min="1" max="60"></label></div>
+      <div class="row"><label>From frame <input id="tStart" type="number" min="0" placeholder="auto"></label><label>To frame <input id="tEnd" type="number" min="1" placeholder="auto"></label></div>
+      <p class="hint">Leave From/To empty and SpriteForge finds the best cycle itself (loops) or skips the still start (one-shots).</p>
+      <button id="tApply" class="btn primary">Apply to sprite frames</button>
+      <div class="canvas-wrap checker small"><canvas id="tOut" width="256" height="320"></canvas></div>
+    </div>
+  </div>
+</dialog>
+
+<!-- Settings -->
+<dialog id="settings">
+  <div class="dlg-head"><h3>Settings</h3><button class="icon-btn" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button></div>
+  <form id="settingsForm" class="settings-grid">
+    <fieldset><legend>ComfyUI</legend>
+      <label>URL<input name="comfyUrl"></label>
+      <label>Workflow (API format)<select name="workflow"></select></label>
+      <label>Loop workflow <em>(optional first→last frame)</em><select name="loopWorkflow"></select></label>
+      <label class="file">Upload workflow… <input type="file" id="wfUpload" accept=".json"></label>
+    </fieldset>
+    <fieldset><legend>Video</legend>
+      <div class="row"><label>Width<input name="videoWidth" type="number"></label><label>Height<input name="videoHeight" type="number"></label></div>
+      <label>Length (frames, 4k+1)<input name="videoLength" type="number"></label>
+      <label>Screen colour<select name="keyColor"><option>green</option><option>magenta</option><option>blue</option></select></label>
+      <div class="row"><label>Char height<input name="charHeightFrac" type="number" step="0.01"></label><label>Feet line<input name="feetFrac" type="number" step="0.01"></label></div>
+      <label>Horizontal centre<input name="centerFrac" type="number" step="0.01"></label>
+    </fieldset>
+    <fieldset><legend>Sprite cells</legend>
+      <div class="row"><label>Cell W<input name="cellWidth" type="number"></label><label>Cell H<input name="cellHeight" type="number"></label></div>
+      <div class="row"><label>Floor Y<input name="baselineY" type="number"></label><label>Char height px<input name="charHeightPx" type="number"></label></div>
+      <p class="hint">Changing cells after generating means re-applying each animation (Tune → Apply). Keep them fixed per project.</p>
+    </fieldset>
+    <div class="dlg-foot"><button type="submit" class="btn primary">Save</button></div>
+  </form>
+</dialog>
+
+<div id="toast"><span></span><button class="btn soft sm" hidden></button></div>
+<script src="chroma.js"></script>
+<script src="app.js"></script>
+<script src="scene.js"></script>
+<script src="nft.js"></script>
+</body>
+</html>

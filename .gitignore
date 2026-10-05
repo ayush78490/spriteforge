@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# User data — characters, jobs, frames, AI models, scenes
+data/
+
+# NFT generated output — images, metadata, combos, base image
+nft/output/
+
+# Environment / secrets
+.env
+.dev.vars
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build artifacts
+dist/

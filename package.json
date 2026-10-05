@@ -1,0 +1,25 @@
+{
+  "name": "spriteforge",
+  "version": "1.0.0",
+  "description": "Local AI sprite animation generator: character image -> Wan 2.2 (ComfyUI) -> keyed, aligned sprite sheets + Unity export",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "mock": "node tools/mock_comfy.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@huggingface/transformers": "^4.3.0",
+    "ag-psd": "^31.0.2",
+    "express": "^5.2.1",
+    "ffmpeg-static": "^5.3.0",
+    "gifenc": "^1.0.3",
+    "multer": "^2.4.0",
+    "sharp": "^0.35.5",
+    "ws": "^8.22.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

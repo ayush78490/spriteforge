@@ -1,0 +1,252 @@
+{
+ "1": {
+  "class_type": "UnetLoaderGGUF",
+  "inputs": {
+   "unet_name": "Wan2.2-I2V-A14B-HighNoise-Q3_K_M.gguf"
+  },
+  "_meta": {
+   "title": "Load high-noise model (GGUF)"
+  }
+ },
+ "2": {
+  "class_type": "UnetLoaderGGUF",
+  "inputs": {
+   "unet_name": "Wan2.2-I2V-A14B-LowNoise-Q3_K_M.gguf"
+  },
+  "_meta": {
+   "title": "Load low-noise model (GGUF)"
+  }
+ },
+ "3": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+   "type": "wan",
+   "device": "default"
+  },
+  "_meta": {
+   "title": "Load text encoder"
+  }
+ },
+ "4": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "wan_2.1_vae.safetensors"
+  },
+  "_meta": {
+   "title": "Load VAE"
+  }
+ },
+ "5": {
+  "class_type": "ModelSamplingSD3",
+  "inputs": {
+   "model": [
+    "15",
+    0
+   ],
+   "shift": 5
+  },
+  "_meta": {
+   "title": "Shift high"
+  }
+ },
+ "6": {
+  "class_type": "ModelSamplingSD3",
+  "inputs": {
+   "model": [
+    "16",
+    0
+   ],
+   "shift": 5
+  },
+  "_meta": {
+   "title": "Shift low"
+  }
+ },
+ "7": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "3",
+    0
+   ],
+   "text": "positive"
+  },
+  "_meta": {
+   "title": "Positive Prompt"
+  }
+ },
+ "8": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "3",
+    0
+   ],
+   "text": "negative"
+  },
+  "_meta": {
+   "title": "Negative Prompt"
+  }
+ },
+ "9": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "character.png"
+  },
+  "_meta": {
+   "title": "Character"
+  }
+ },
+ "10": {
+  "class_type": "WanImageToVideo",
+  "inputs": {
+   "positive": [
+    "7",
+    0
+   ],
+   "negative": [
+    "8",
+    0
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "width": 480,
+   "height": 832,
+   "length": 49,
+   "batch_size": 1,
+   "start_image": [
+    "9",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "WanImageToVideo"
+  }
+ },
+ "11": {
+  "class_type": "KSamplerAdvanced",
+  "inputs": {
+   "model": [
+    "5",
+    0
+   ],
+   "add_noise": "enable",
+   "noise_seed": 1,
+   "steps": 4,
+   "cfg": 1,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "10",
+    0
+   ],
+   "negative": [
+    "10",
+    1
+   ],
+   "latent_image": [
+    "10",
+    2
+   ],
+   "start_at_step": 0,
+   "end_at_step": 2,
+   "return_with_leftover_noise": "enable"
+  },
+  "_meta": {
+   "title": "Sampler high"
+  }
+ },
+ "12": {
+  "class_type": "KSamplerAdvanced",
+  "inputs": {
+   "model": [
+    "6",
+    0
+   ],
+   "add_noise": "disable",
+   "noise_seed": 1,
+   "steps": 4,
+   "cfg": 1,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "10",
+    0
+   ],
+   "negative": [
+    "10",
+    1
+   ],
+   "latent_image": [
+    "11",
+    0
+   ],
+   "start_at_step": 2,
+   "end_at_step": 10000,
+   "return_with_leftover_noise": "disable"
+  },
+  "_meta": {
+   "title": "Sampler low"
+  }
+ },
+ "13": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "4",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "VAE Decode"
+  }
+ },
+ "14": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "13",
+    0
+   ],
+   "filename_prefix": "spriteforge"
+  },
+  "_meta": {
+   "title": "Save frames"
+  }
+ },
+ "15": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "model": [
+    "1",
+    0
+   ],
+   "lora_name": "wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
+   "strength_model": 1
+  },
+  "_meta": {
+   "title": "Lightning 4-step LoRA (high)"
+  }
+ },
+ "16": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "model": [
+    "2",
+    0
+   ],
+   "lora_name": "wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
+   "strength_model": 1
+  },
+  "_meta": {
+   "title": "Lightning 4-step LoRA (low)"
+  }
+ }
+}
